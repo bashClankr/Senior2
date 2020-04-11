@@ -1,5 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { UserService } from './../user.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+
 
 
 @Component({
@@ -12,22 +14,9 @@ export class Tab1Page implements OnInit{
   tests:any;
   test:string;
 
-  constructor(public userService: UserService) {}
+  constructor(public userService: UserService, public afAuth :AngularFireAuth) {}
 
   ngOnInit() {
-    this.userService.read_Workouts().subscribe(data =>{
-      this.tests = data.map(e => {
-        return{
-          id: e.payload.doc.id,
-          isEdit: false,
-          Description: e.payload.doc.data()['description'],
-          EndTime: e.payload.doc.data()['endTime'],
-          StartTime: e.payload.doc.data()['startTime'],
-          Title: e.payload.doc.data()['title']
-
-        };
-      })
-      console.log(this.tests);
-    });
+    
   }
 }
