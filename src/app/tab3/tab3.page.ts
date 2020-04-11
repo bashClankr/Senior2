@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-tab3',
@@ -7,6 +8,8 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  constructor() {}
+  constructor(public afAuth :AngularFireAuth) {
+  }
+  user=this.afAuth.auth.currentUser.email
 
 }

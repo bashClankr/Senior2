@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h1 id ='title'>Welcome to GitFit!</h1>
+  <div id= "creds">
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input placeholder="Enter Email" [(ngModel)]="user.email"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label stacked>Password</ion-label>
+      <ion-input type="password" placeholder='Enter Password' [(ngModel)]="user.password"></ion-input>
+    </ion-item>
+  </div>
+ 
+  <div id='butts'>
+    <ion-button id ='first' ion-button margin-right>
+      SIGN UP
+    </ion-button>
+
+    <ion-button ion-button color="secondary" (click)="login()">
+      SIGN IN
+    </ion-button>
+  </div>
+</ion-content>
