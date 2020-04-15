@@ -6,15 +6,28 @@ import { AngularFirestore } from '@angular/fire/firestore';
 //     uid: string
 // }
 
+
 @Injectable()
 export class UserService {
-    //private user: user; 
+    id;
 
     constructor(private firestore: AngularFirestore){}
 
     
     read_Workouts() {
-    return this.firestore.collection('sales').snapshotChanges();
+        return this.firestore.collection('sales').snapshotChanges();
+    }
+
+    read_Items(docs:string){
+        return this.firestore.collection('sales').doc(docs).collection('items').snapshotChanges();
+    }
+
+    setId(temp:string){
+        this.id=temp;
+    }
+
+    getId(){
+        return this.id;
     }
     
     

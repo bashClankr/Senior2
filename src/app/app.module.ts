@@ -17,6 +17,8 @@ import { UserService } from './user.service';
 
 
 
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -29,6 +31,7 @@ import { UserService } from './user.service';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     UserService
+
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>items</ion-title>
+    <ion-button (click)="goBack()">Back to Sales</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-card *ngFor="let item of items">
+    <span>
+      <ion-card-header>
+        <ion-card-title>{{item.Name}}</ion-card-title>
+        <img src={{item.Picture}}>
+        <h4>From: {{item.Qty}}</h4>
+      </ion-card-header>
+    </span>
+  </ion-card>
+
+</ion-content>

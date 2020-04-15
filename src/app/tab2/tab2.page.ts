@@ -1,6 +1,8 @@
 import { Component,OnInit } from '@angular/core';
 import { UserService } from './../user.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
+
 
 
 
@@ -14,7 +16,7 @@ export class Tab2Page implements OnInit{
   tests:any;
   test:string;
 
-  constructor(public userService: UserService, public afAuth :AngularFireAuth) {}
+  constructor(public userService: UserService, public afAuth :AngularFireAuth,private router: Router) {}
 
   ngOnInit() {
     if(this.afAuth.auth.currentUser){
@@ -32,9 +34,12 @@ export class Tab2Page implements OnInit{
         })
         console.log(this.tests);
       });
-    }else{
-      
+      //this.userService.setId("JpXGJaIsZodIm91GrGow");
     }
     
+  }
+  items(id:string){
+    this.userService.setId(id);
+    this.router.navigateByUrl('/items');
   }
 }
