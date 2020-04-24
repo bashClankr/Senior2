@@ -1,6 +1,10 @@
 import { Component,OnInit } from '@angular/core';
 import { UserService } from './../user.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
+
+
 
 
 
@@ -11,12 +15,72 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class Tab1Page implements OnInit{
   
-  tests:any;
-  test:string;
+  constructor(
+    public userService: UserService, 
+    public afAuth :AngularFireAuth, 
+    public router:Router,
+    public store:AngularFirestore
+    ) {}
 
-  constructor(public userService: UserService, public afAuth :AngularFireAuth) {}
+  user1 = this.afAuth.auth.currentUser.displayName;
+  exists=false;
+  saleID;
+  
+
+
 
   ngOnInit() {
-    
+    if(!this.afAuth.auth.currentUser){
+      this.router.navigateByUrl("../login");
+    }
+
+    this.store.collection('users').doc(this.afAuth.auth.currentUser.uid).ref.get()
+    .then(doc => {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+        console.log("Sale ID:", doc.get("SaleID"));
+        if(doc.get("SaleID") ==""){
+          this.exists=false;
+        }else{
+          this.exists=true;
+          this.saleID=doc.get("SaleID");
+        }
+      } else {
+        console.log("No such document!");
+        this.exists=false;
+      }
+    }).catch(function(error) {
+      console.log("Error getting document:", error);
+    });
+
+
+    this.store.collection('sales').doc(this.afAuth.auth.currentUser.uid).ref.get()
+    .then(doc => {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+        console.log("Sale ID:", doc.get("SaleID"));
+        if(doc.get("SaleID") ==""){
+          this.exists=true;
+        }else{
+          this.exists=false;
+        }
+      } else {
+        console.log("No such document!");
+      }
+    }).catch(function(error) {
+      console.log("Error getting document:", error);
+    });
+  }
+
+  newsale(){
+    this.router.navigateByUrl("/newsale");
+    this.ngOnInit();
+    this.exists=true;
+  }
+
+  deleteSale(){
+    this.store.collection("sales").doc(this.saleID).delete();
+    this.store.collection('users').doc(this.afAuth.auth.currentUser.uid).update({SaleID:""});
+    this.ngOnInit();
   }
 }

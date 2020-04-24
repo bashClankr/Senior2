@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
-
 interface test{
   email?:string;
   password?:string;
@@ -17,7 +16,9 @@ export class LoginPage implements OnInit {
 
   user:test={}
 
-  constructor(public afAuth :AngularFireAuth,private router: Router) { }
+  constructor(
+    public afAuth :AngularFireAuth,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -28,10 +29,14 @@ export class LoginPage implements OnInit {
       
     )
     if(this.afAuth.auth.currentUser){
-      this.router.navigateByUrl('/tabs/tab1');
+      this.router.navigateByUrl('tabs');
+      alert("working");
     }else{
       alert("invalid");
     }
+  }
+  signup(){
+    this.router.navigateByUrl("/signup");
   }
 }
 

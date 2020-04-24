@@ -13,6 +13,14 @@ const routes: Routes = [
   {
     path: 'items',
     loadChildren: () => import('./items/items.module').then( m => m.ItemsPageModule)
+  },
+  {
+    path: 'signup',
+    loadChildren: () => import('./signup/signup.module').then( m => m.SignupPageModule)
+  },
+  {
+    path: 'newsale',
+    loadChildren: () => import('./newsale/newsale.module').then( m => m.NewsalePageModule)
   }
 ];
 @NgModule({
