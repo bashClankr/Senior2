@@ -23,6 +23,7 @@ export class Tab1Page implements OnInit{
     ) {}
 
   user1 = this.afAuth.auth.currentUser.displayName;
+  items:any;
 
 
   
@@ -43,6 +44,19 @@ export class Tab1Page implements OnInit{
           this.userService.setExists(false);
         }else{
           this.userService.setExists(true);
+          this.userService.setSaleID(doc.get("SaleID"));
+          this.userService.read_Items(doc.get("SaleID")).subscribe(data =>{
+            this.items = data.map(e => {
+              return{
+                id: e.payload.doc.id,
+                isEdit: false,
+                Name: e.payload.doc.data()['name'],
+                Picture: e.payload.doc.data()['picture'],
+                Qty: e.payload.doc.data()['qty']
+              };
+            })
+          });
+          console.log(this.items);
         }
       } else {
         console.log("No such document!");
@@ -51,9 +65,6 @@ export class Tab1Page implements OnInit{
     }).catch(function(error) {
       console.log("Error getting document:", error);
     });
-
- 
-
   }
 
   newsale(){
@@ -69,6 +80,6 @@ export class Tab1Page implements OnInit{
   }
 
   addItems(){
-    
+
   }
 }

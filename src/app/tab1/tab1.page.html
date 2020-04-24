@@ -17,9 +17,19 @@
   <ion-item *ngIf='this.userService.getExists()'>
     <h2>Your Sale: </h2>
     <h3>items here</h3>
-    <ion-button (click)='addItmes()'>Add Items</ion-button>
+    <ion-button (click)='addItems()'>Add Items</ion-button>
   </ion-item>
   <ion-button (click)="deleteSale()">Delete Sale</ion-button>
+
+  <ion-card *ngFor="let item of items">
+    <span>
+      <ion-card-header>
+        <ion-card-title>{{item.Name}}</ion-card-title>
+        <!-- <img src={{item.Picture}}>
+        <h4>From: {{item.Qty}}</h4> -->
+      </ion-card-header>
+    </span>
+  </ion-card>
 
 
   
