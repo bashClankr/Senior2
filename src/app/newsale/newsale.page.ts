@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { UserService } from './../user.service';
+
 
 
 
@@ -25,7 +27,8 @@ export class NewsalePage implements OnInit {
   constructor(
     public store:AngularFirestore,
     public afAuth:AngularFireAuth,
-    public router:Router
+    public router:Router,
+    public userService: UserService
     ) { }
 
   ngOnInit() {
@@ -43,13 +46,14 @@ export class NewsalePage implements OnInit {
     this.store.collection('sales').add(record).then(docRef => {
       console.log("Document written with ID: ", docRef.id);
       this.store.collection('users').doc(this.afAuth.auth.currentUser.uid).update({SaleID:docRef.id});
+      this.userService.setSaleID(docRef.id);
       this.router.navigateByUrl("tabs/tab1");
 
     })
   .catch(function(error) {
       console.error("Error adding document: ", error);
   });
-
+      this.userService.setExists(true);
   }
 
 }

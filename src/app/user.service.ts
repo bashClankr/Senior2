@@ -10,6 +10,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 @Injectable()
 export class UserService {
     id;
+    exists=false;
+    SaleID;
 
     constructor(private firestore: AngularFirestore){}
 
@@ -28,6 +30,22 @@ export class UserService {
 
     getId(){
         return this.id;
+    }
+
+    getExists(){
+        return this.exists;
+    }
+
+    setExists(set){
+        this.exists = set;
+    }
+
+    getSaleID(){
+        return this.SaleID;
+    }
+
+    setSaleID(set){
+        this.SaleID = set;
     }
     
     

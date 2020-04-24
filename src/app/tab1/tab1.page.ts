@@ -23,8 +23,8 @@ export class Tab1Page implements OnInit{
     ) {}
 
   user1 = this.afAuth.auth.currentUser.displayName;
-  exists=false;
-  saleID;
+
+
   
 
 
@@ -40,47 +40,35 @@ export class Tab1Page implements OnInit{
         console.log("Document data:", doc.data());
         console.log("Sale ID:", doc.get("SaleID"));
         if(doc.get("SaleID") ==""){
-          this.exists=false;
+          this.userService.setExists(false);
         }else{
-          this.exists=true;
-          this.saleID=doc.get("SaleID");
+          this.userService.setExists(true);
         }
       } else {
         console.log("No such document!");
-        this.exists=false;
+        this.userService.setExists(false);
       }
     }).catch(function(error) {
       console.log("Error getting document:", error);
     });
 
+ 
 
-    this.store.collection('sales').doc(this.afAuth.auth.currentUser.uid).ref.get()
-    .then(doc => {
-      if (doc.exists) {
-        console.log("Document data:", doc.data());
-        console.log("Sale ID:", doc.get("SaleID"));
-        if(doc.get("SaleID") ==""){
-          this.exists=true;
-        }else{
-          this.exists=false;
-        }
-      } else {
-        console.log("No such document!");
-      }
-    }).catch(function(error) {
-      console.log("Error getting document:", error);
-    });
   }
 
   newsale(){
     this.router.navigateByUrl("/newsale");
-    this.ngOnInit();
-    this.exists=true;
+    
   }
 
   deleteSale(){
-    this.store.collection("sales").doc(this.saleID).delete();
+    this.store.collection("sales").doc(this.userService.getSaleID()).delete();
     this.store.collection('users').doc(this.afAuth.auth.currentUser.uid).update({SaleID:""});
+    this.userService.setExists(false);
     this.ngOnInit();
+  }
+
+  addItems(){
+    
   }
 }

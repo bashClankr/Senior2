@@ -8,18 +8,19 @@
 <ion-content>
   <h1>Welcome to Yard Sale, {{user1}}</h1>
 
-  <ion-item *ngIf='!exists'>
+  <ion-item *ngIf='!this.userService.getExists()'>
     <h2>Start your Own Sale!</h2>
     <h4>Lets get you out there!</h4>
     <ion-button (click)="newsale()">New Sale</ion-button>
   </ion-item>
 
-  <ion-item *ngIf='exists'>
+  <ion-item *ngIf='this.userService.getExists()'>
     <h2>Your Sale: </h2>
     <h3>items here</h3>
-    <ion-button>Add Items</ion-button>
+    <ion-button (click)='addItmes()'>Add Items</ion-button>
   </ion-item>
   <ion-button (click)="deleteSale()">Delete Sale</ion-button>
+
 
   
 </ion-content>

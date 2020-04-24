@@ -42,4 +42,7 @@ export class Tab2Page implements OnInit{
     this.userService.setId(id);
     this.router.navigateByUrl('/items');
   }
+  refresh(){
+    this.ngOnInit();
+  }
 }
