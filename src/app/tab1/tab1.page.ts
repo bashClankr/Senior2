@@ -80,6 +80,11 @@ export class Tab1Page implements OnInit{
   }
 
   addItems(){
+    this.router.navigateByUrl("/additems")
+  }
+
+  deleteItem(id){
+    this.store.collection('sales').doc(this.userService.getSaleID()).collection('items').doc(id).delete();
 
   }
 }

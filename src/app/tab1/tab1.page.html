@@ -25,8 +25,8 @@
     <span>
       <ion-card-header>
         <ion-card-title>{{item.Name}}</ion-card-title>
-        <!-- <img src={{item.Picture}}>
-        <h4>From: {{item.Qty}}</h4> -->
+        <ion-button (click)="deleteItem(item.id)">Delete Item</ion-button>
+
       </ion-card-header>
     </span>
   </ion-card>
