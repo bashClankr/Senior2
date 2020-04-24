@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Signup</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label stacked>Email</ion-label>
+    <ion-input placeholder="Enter Email" [(ngModel)]="user.email"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Name</ion-label>
+    <ion-input placeholder="Enter Name" [(ngModel)]="user.name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Password</ion-label>
+    <ion-input type="password" placeholder='Enter Password' [(ngModel)]="user.password"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Address</ion-label>
+    <ion-input placeholder='E.g.: 1000 Main Street' [(ngModel)]="user.address"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>City</ion-label>
+    <ion-input placeholder='Enter City' [(ngModel)]="user.city"></ion-input>
+  </ion-item>
+
+  <ion-button (click)="signup()">Sign Up</ion-button>
+
+</ion-content>

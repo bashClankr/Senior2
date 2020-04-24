@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Create a New Sale</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label stacked>Sale Name</ion-label>
+    <ion-input placeholder="Enter Email" [(ngModel)]="sale.name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Start Date</ion-label>
+    <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="sale.start"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>End Date</ion-label>
+    <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="sale.end"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Description</ion-label>
+    <ion-input placeholder='Describe Your Sale' [(ngModel)]="sale.description"></ion-input>
+  </ion-item>
+
+  <ion-button (click)="createSale()">Create Sale</ion-button>
+
+</ion-content>
