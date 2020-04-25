@@ -12,6 +12,7 @@ export class UserService {
     id;
     exists=false;
     SaleID;
+    imagePath:string="";
 
     constructor(private firestore: AngularFirestore){}
 
@@ -45,6 +46,14 @@ export class UserService {
     }
 
     setSaleID(set){
+        this.SaleID = set;
+    }
+
+    getImagePath(){
+        return this.SaleID;
+    }
+
+    setImagePath(set){
         this.SaleID = set;
     }
     

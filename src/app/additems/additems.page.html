@@ -1,24 +1,25 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>additems</ion-title>
+    <ion-title>Add Items</ion-title>
+    <ion-button (click)="goBack()">Back to Home</ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-item>
     <ion-label stacked>Item Name</ion-label>
-    <ion-input placeholder="Enter Email" [(ngModel)]="item.name"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Picture URL</ion-label>
-    <ion-input  [(ngModel)]="item.picture"></ion-input>
+    <ion-input placeholder="Enter Name" [(ngModel)]="item.name" required></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label>Number of Item</ion-label>
-    <ion-input  [(ngModel)]="item.qty"></ion-input>
+    <ion-input placeholder="Enter Quantity" type="number" [(ngModel)]="item.qty" required></ion-input>
   </ion-item>
 
-  <ion-button (click)="createItem()">Create Sale</ion-button>
+  <ion-item>
+    <ion-label>Upload Image</ion-label>
+    <input type='file' id='input'>
+  </ion-item>
+
+  <ion-button (click)="createItem()">Add Item</ion-button>
 </ion-content>

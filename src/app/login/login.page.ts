@@ -27,12 +27,12 @@ export class LoginPage implements OnInit {
     await this.afAuth.auth.signInWithEmailAndPassword(
       this.user.email, this.user.password
       
-    )
+    ).catch(function(error) {
+      alert("Invalid Credentials");
+  });
+
     if(this.afAuth.auth.currentUser){
       this.router.navigateByUrl('tabs');
-      alert("working");
-    }else{
-      alert("invalid");
     }
   }
   signup(){

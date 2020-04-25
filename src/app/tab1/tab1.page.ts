@@ -3,7 +3,13 @@ import { UserService } from './../user.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
+import * as firebase from 'firebase/app';
+import 'firebase/storage';
 
+
+interface picture{
+  pic?:File;
+}
 
 
 
@@ -24,6 +30,8 @@ export class Tab1Page implements OnInit{
 
   user1 = this.afAuth.auth.currentUser.displayName;
   items:any;
+  upload:picture={}
+
 
 
   
@@ -65,6 +73,8 @@ export class Tab1Page implements OnInit{
     }).catch(function(error) {
       console.log("Error getting document:", error);
     });
+
+    console.log(this.upload.pic)
   }
 
   newsale(){
@@ -87,4 +97,5 @@ export class Tab1Page implements OnInit{
     this.store.collection('sales').doc(this.userService.getSaleID()).collection('items').doc(id).delete();
 
   }
+
 }
