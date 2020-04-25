@@ -49,9 +49,11 @@ export class NewsalePage implements OnInit {
       this.userService.setSaleID(docRef.id);
 
 
-      this.store.collection('sales').doc(docRef.id).collection('items').doc('item1').set({
-      //when their account is created, it makes an empty document called 'item1' so the collection can exist
-      });
+      // this.store.collection('sales').doc(docRef.id).collection('items').doc('item1').set({
+      // //when their account is created, it makes an empty document called 'item1' so the collection can exist
+      // });
+      this.userService.setExists(true);
+      console.log('This is the id that i will add to'+ this.userService.getSaleID());
 
       this.router.navigateByUrl("tabs/tab1");
 
@@ -60,8 +62,7 @@ export class NewsalePage implements OnInit {
   .catch(function(error) {
       console.error("Error adding document: ", error);
   });
-      this.userService.setExists(true);
-      console.log('This is the id that i will add to'+ this.userService.getSaleID());
+
     
         
       

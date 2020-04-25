@@ -12,6 +12,12 @@ interface picture{
 }
 
 
+export interface Question {
+
+  id: string;
+
+}
+
 
 
 @Component({
@@ -39,6 +45,7 @@ export class Tab1Page implements OnInit{
 
 
   ngOnInit() {
+    console.log("it realoded*****");
     if(!this.afAuth.auth.currentUser){
       this.router.navigateByUrl("../login");
     }
@@ -74,7 +81,6 @@ export class Tab1Page implements OnInit{
       console.log("Error getting document:", error);
     });
 
-    console.log(this.upload.pic)
   }
 
   newsale(){
@@ -83,19 +89,43 @@ export class Tab1Page implements OnInit{
   }
 
   deleteSale(){
-    this.store.collection("sales").doc(this.userService.getSaleID()).delete();
-    this.store.collection('users').doc(this.afAuth.auth.currentUser.uid).update({SaleID:""});
-    this.userService.setExists(false);
-    this.ngOnInit();
+
+
+    // this.store.collection('sales').doc(this.userService.getSaleID()).collection('items').ref.get().
+    // then(doc => {
+    //   if(doc.docs.length>0){
+    //     alert("Make sure all items are removed before deleting");
+    //   }else{
+        
+    
+    //       this.store.collection("sales").doc(this.userService.getSaleID()).delete();
+
+
+    //       this.store.collection('users').doc(this.afAuth.auth.currentUser.uid).update({SaleID:""});
+    //       this.userService.setExists(false);
+    //       this.ngOnInit()
+    //   }
+
+      
+    // }).catch(function(error) {
+    //   console.log("Error removing placeholder:", error);
+    // });
+
+
+          this.store.collection("sales").doc(this.userService.getSaleID()).delete();
+          this.store.collection('users').doc(this.afAuth.auth.currentUser.uid).update({SaleID:""});
+          this.userService.setExists(false);
+          this.ngOnInit()
+
   }
 
   addItems(){
-    this.router.navigateByUrl("/additems")
+    this.router.navigateByUrl("/additems");
+    this.ngOnInit(); 
   }
 
   deleteItem(id){
     this.store.collection('sales').doc(this.userService.getSaleID()).collection('items').doc(id).delete();
-
   }
 
 }

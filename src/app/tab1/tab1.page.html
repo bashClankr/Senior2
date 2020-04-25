@@ -22,6 +22,7 @@
   <ion-button (click)="deleteSale()">Delete Sale</ion-button>
 
 
+  <div *ngIf='this.userService.getExists()'>
   <ion-card *ngFor="let item of items">
     <span>
       <ion-card-header>
@@ -31,6 +32,7 @@
       </ion-card-header>
     </span>
   </ion-card>
+</div>
 
 
   

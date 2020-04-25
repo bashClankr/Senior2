@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 
 
 
+
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -32,7 +33,6 @@ export class Tab2Page implements OnInit{
   
           };
         })
-        console.log(this.tests);
       });
       //this.userService.setId("JpXGJaIsZodIm91GrGow");
     }
