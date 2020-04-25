@@ -25,10 +25,21 @@
             </ion-list-header>
             <ion-button class = "clear" ion-button round clear>Edit</ion-button>
         </ion-item>
+
+        <ion-item>
+          <ion-list-header>
+             Passport
+          </ion-list-header>
+          <ion-button round clear (click)='passport()'>Fly Away!</ion-button>
+      </ion-item>
+
+      <ion-item>
+        <ion-list-header (click)="logout()">
+           Sign Out
+        </ion-list-header>
+    </ion-item>
       </ion-list>
     
   </ion-card>
-
-  <ion-button (click)="logout()">Logout</ion-button>
 
 </ion-content>

@@ -10,15 +10,21 @@ import { AngularFirestore } from '@angular/fire/firestore';
 @Injectable()
 export class UserService {
     id;
-    exists=false;
+    exists;
     SaleID;
     imagePath:string="";
+    city;
+    passport="";
 
     constructor(private firestore: AngularFirestore){}
 
     
     read_Workouts() {
-        return this.firestore.collection('sales').snapshotChanges();
+        
+            return this.firestore.collection('sales', ref => ref.where('city', '==', this.getCity())).snapshotChanges();
+  
+
+
     }
 
     read_Items(docs:string){
@@ -56,6 +62,25 @@ export class UserService {
     setImagePath(set){
         this.SaleID = set;
     }
+
+    getCity(){
+        return this.city;
+    }
+
+    setCity(set){
+        this.city = set;
+    }
+
+    getPassport(){
+        return this.passport;
+    }
+
+    setPassport(set){
+        this.passport = set;
+    }
     
+    clearPassport(){
+        this.passport = "";
+    }
     
 }

@@ -29,5 +29,9 @@ export class Tab3Page implements OnInit{
 
   }
 
+  passport(){
+    this.router.navigateByUrl('/passport');
+  }
+
 
 }

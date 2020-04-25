@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
   });
 
     if(this.afAuth.auth.currentUser){
-      this.router.navigateByUrl('tabs');
+      this.router.navigateByUrl('tabs/tab1');
     }
   }
   signup(){

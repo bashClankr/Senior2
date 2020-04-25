@@ -20,6 +20,7 @@ export class Tab2Page implements OnInit{
   constructor(public userService: UserService, public afAuth :AngularFireAuth,private router: Router) {}
 
   ngOnInit() {
+
     if(this.afAuth.auth.currentUser){
       this.userService.read_Workouts().subscribe(data =>{
         this.tests = data.map(e => {

@@ -36,7 +36,7 @@ export class Tab1Page implements OnInit{
 
   user1 = this.afAuth.auth.currentUser.displayName;
   items:any;
-  upload:picture={}
+  upload:picture={};
 
 
 
@@ -53,8 +53,7 @@ export class Tab1Page implements OnInit{
     this.store.collection('users').doc(this.afAuth.auth.currentUser.uid).ref.get()
     .then(doc => {
       if (doc.exists) {
-        console.log("Document data:", doc.data());
-        console.log("Sale ID:", doc.get("SaleID"));
+        this.userService.setCity( doc.get("City"))
         if(doc.get("SaleID") ==""){
           this.userService.setExists(false);
         }else{
@@ -71,14 +70,11 @@ export class Tab1Page implements OnInit{
               };
             })
           });
-          console.log(this.items);
         }
       } else {
-        console.log("No such document!");
         this.userService.setExists(false);
       }
     }).catch(function(error) {
-      console.log("Error getting document:", error);
     });
 
   }

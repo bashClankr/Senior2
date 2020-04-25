@@ -40,7 +40,9 @@ export class NewsalePage implements OnInit {
     record['description'] = this.sale.description;
     record['endTime'] = this.sale.end;
     record['startTime'] = this.sale.start;
-
+    this.store.collection('users').doc(this.afAuth.auth.currentUser.uid).ref.get().then(e =>{
+      console.log(e.data()['City']);
+      record['city'] = e.data()['City']
 
 
     this.store.collection('sales').add(record).then(docRef => {
@@ -53,7 +55,6 @@ export class NewsalePage implements OnInit {
       // //when their account is created, it makes an empty document called 'item1' so the collection can exist
       // });
       this.userService.setExists(true);
-      console.log('This is the id that i will add to'+ this.userService.getSaleID());
 
       this.router.navigateByUrl("tabs/tab1");
 
@@ -62,6 +63,17 @@ export class NewsalePage implements OnInit {
   .catch(function(error) {
       console.error("Error adding document: ", error);
   });
+
+
+
+
+
+    });
+    
+
+
+
+
 
     
         

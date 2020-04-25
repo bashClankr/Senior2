@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './../user.service';
 import { Router } from '@angular/router';
-import * as firebase from 'firebase/app';
 import 'firebase/storage';
-import { url } from 'inspector';
-import { async } from '@angular/core/testing';
-import { resolve } from 'url';
+
 
 
 
@@ -41,6 +38,9 @@ export class ItemsPage implements OnInit {
 
   goBack(){
     this.router.navigateByUrl('/tabs/tab2');
+  }
+  back2(){
+    this.router.navigateByUrl('/passport');
   }
 
 
