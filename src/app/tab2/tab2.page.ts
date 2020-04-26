@@ -47,4 +47,15 @@ export class Tab2Page implements OnInit{
   refresh(){
     this.ngOnInit();
   }
+
+  exists(item){
+    var current = new Date()
+    var end = new Date(item.EndTime)
+
+    if(current<= end){
+      return true
+    }else{
+      return false 
+    }
+  }
 }

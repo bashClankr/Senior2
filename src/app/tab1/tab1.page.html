@@ -15,11 +15,18 @@
       <ion-button (click)="newsale()">New Sale</ion-button>
     </ion-card>
   
-    <ion-item *ngIf='this.userService.getExists()'>
-      <h2>Your Sale</h2>
-      <ion-button (click)='addItems()'>Add Items</ion-button>
-      <ion-button (click)="deleteSale()">Delete Sale</ion-button>
-    </ion-item>
+    <ion-card *ngIf='this.userService.getExists()'>
+      <ion-item >
+        <h2>Your Sale</h2>
+        <ion-button (click)='addItems()'>Add Items</ion-button>
+        <ion-button (click)="deleteSale()">Delete Sale</ion-button>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>{{sale.Name}}</ion-label>
+      </ion-item>
+    </ion-card>
+  
     
   
   
@@ -29,7 +36,7 @@
         <ion-item>
           <ion-label>{{item.Name}}</ion-label>
           <ion-button (click)="deleteItem(item)">Delete Item</ion-button>
-          <ion-button (click)="updateItem(item)">Update Item</ion-button>
+          <ion-button >Update Item</ion-button>
 
         </ion-item>
       </span>

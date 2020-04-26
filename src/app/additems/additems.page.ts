@@ -46,6 +46,7 @@ export class AdditemsPage implements OnInit {
         
         var selectedFile = (<HTMLInputElement>document.getElementById('input')).files[0];
         
+        
         if(record['name']==undefined || record['qty']==undefined){
           alert("Name and Quantity are Required")
         }
@@ -83,6 +84,7 @@ export class AdditemsPage implements OnInit {
             (<HTMLInputElement>document.getElementById('input')).value="";
         }
         else{
+          console.log("getting there safsad")
 
           this.store.collection('sales').doc(this.userService.getSaleID()).collection('items').doc('item1').ref.get().
           then(doc => {
