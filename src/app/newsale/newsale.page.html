@@ -8,17 +8,17 @@
 
   <ion-item>
     <ion-label stacked>Sale Name</ion-label>
-    <ion-input placeholder="Enter Email" [(ngModel)]="sale.name"></ion-input>
+    <ion-input placeholder="Enter Sale Name" [(ngModel)]="sale.name"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label>Start Date</ion-label>
-    <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="sale.start"></ion-datetime>
+    <ion-datetime displayFormat='MMMM DD h:mm a'  [(ngModel)]="sale.start"></ion-datetime>
   </ion-item>
 
   <ion-item>
     <ion-label>End Date</ion-label>
-    <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="sale.end"></ion-datetime>
+    <ion-datetime displayFormat='MMMM DD h:mm a' [(ngModel)]="sale.end"></ion-datetime>
   </ion-item>
 
   <ion-item>

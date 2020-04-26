@@ -28,9 +28,10 @@ export class Tab2Page implements OnInit{
             id: e.payload.doc.id,
             isEdit: false,
             Description: e.payload.doc.data()['description'],
-            EndTime: e.payload.doc.data()['endTime'],
-            StartTime: e.payload.doc.data()['startTime'],
-            Title: e.payload.doc.data()['title']
+            EndTime: new Date(e.payload.doc.data()['endTime']).toLocaleString(),
+            StartTime: new Date(e.payload.doc.data()['startTime']).toLocaleString(),
+            Title: e.payload.doc.data()['title'],
+            Add: e.payload.doc.data()['address']
   
           };
         })

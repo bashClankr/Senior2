@@ -15,6 +15,7 @@ export class UserService {
     imagePath:string="";
     city;
     passport="";
+    Add;
 
     constructor(private firestore: AngularFirestore){}
 
@@ -81,6 +82,13 @@ export class UserService {
     
     clearPassport(){
         this.passport = "";
+    }
+    getAdd(){
+        return this.Add;
+    }
+
+    setAdd(set){
+        this.Add = set;
     }
     
 }

@@ -38,5 +38,16 @@ export class LoginPage implements OnInit {
   signup(){
     this.router.navigateByUrl("/signup");
   }
+  forgot(){
+    if(this.user.email==null){
+      alert("Enter email to reset password");
+
+    }else{
+      this.afAuth.auth.sendPasswordResetEmail(this.user.email).catch(function(error) {
+        alert("Enter valid email to reset password");
+      });
+    }
+
+  }
 }
 

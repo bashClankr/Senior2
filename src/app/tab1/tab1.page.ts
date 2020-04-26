@@ -37,6 +37,7 @@ export class Tab1Page implements OnInit{
   user1 = this.afAuth.auth.currentUser.displayName;
   items:any;
   upload:picture={};
+  loading=true;
 
 
 
@@ -53,7 +54,8 @@ export class Tab1Page implements OnInit{
     this.store.collection('users').doc(this.afAuth.auth.currentUser.uid).ref.get()
     .then(doc => {
       if (doc.exists) {
-        this.userService.setCity( doc.get("City"))
+        this.userService.setCity( doc.get("City"));
+        this.userService.setAdd(doc.get("Address"));
         if(doc.get("SaleID") ==""){
           this.userService.setExists(false);
         }else{
@@ -66,7 +68,8 @@ export class Tab1Page implements OnInit{
                 isEdit: false,
                 Name: e.payload.doc.data()['name'],
                 Picture: e.payload.doc.data()['picture'],
-                Qty: e.payload.doc.data()['qty']
+                Qty: e.payload.doc.data()['qty'],
+                Storage: e.payload.doc.data()['storage']
               };
             })
           });
@@ -76,7 +79,8 @@ export class Tab1Page implements OnInit{
       }
     }).catch(function(error) {
     });
-
+    this.loading=false;
+    console.log("doneloading");
   }
 
   newsale(){
@@ -107,7 +111,6 @@ export class Tab1Page implements OnInit{
     //   console.log("Error removing placeholder:", error);
     // });
 
-
           this.store.collection("sales").doc(this.userService.getSaleID()).delete();
           this.store.collection('users').doc(this.afAuth.auth.currentUser.uid).update({SaleID:""});
           this.userService.setExists(false);
@@ -120,8 +123,16 @@ export class Tab1Page implements OnInit{
     this.ngOnInit(); 
   }
 
-  deleteItem(id){
-    this.store.collection('sales').doc(this.userService.getSaleID()).collection('items').doc(id).delete();
+  deleteItem(item){
+    console.log(item);
+    if(item.Storage===""){
+      this.store.collection('sales').doc(this.userService.getSaleID()).collection('items').doc(item.id).delete();
+    }else{
+      firebase.storage().ref().child(item.Storage).delete();
+      this.store.collection('sales').doc(this.userService.getSaleID()).collection('items').doc(item.id).delete();
+    }
+
+    
   }
 
 }

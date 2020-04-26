@@ -42,7 +42,9 @@ export class NewsalePage implements OnInit {
     record['startTime'] = this.sale.start;
     this.store.collection('users').doc(this.afAuth.auth.currentUser.uid).ref.get().then(e =>{
       console.log(e.data()['City']);
-      record['city'] = e.data()['City']
+      record['city'] = e.data()['City'];
+      record['address'] = e.data()['Address'];
+
 
 
     this.store.collection('sales').add(record).then(docRef => {

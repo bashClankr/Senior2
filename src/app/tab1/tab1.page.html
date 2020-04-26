@@ -8,31 +8,36 @@
 <ion-content>
   <h1>Welcome {{user1}}</h1>
 
-  <ion-card *ngIf='!this.userService.getExists()'>
-    <ion-card-title>Start your Own Sale!</ion-card-title>
-    <h3>Click the button below to get started!</h3>
-    <ion-button (click)="newsale()">New Sale</ion-button>
-  </ion-card>
-
-  <ion-item *ngIf='this.userService.getExists()'>
-    <h2>Your Sale</h2>
-    <ion-button (click)='addItems()'>Add Items</ion-button>
-    <ion-button (click)="deleteSale()">Delete Sale</ion-button>
-  </ion-item>
+  <div [hidden]='this.loading'>
+    <ion-card *ngIf='!this.userService.getExists()'>
+      <ion-card-title>Start your Own Sale!</ion-card-title>
+      <h3>Click the button below to get started!</h3>
+      <ion-button (click)="newsale()">New Sale</ion-button>
+    </ion-card>
   
+    <ion-item *ngIf='this.userService.getExists()'>
+      <h2>Your Sale</h2>
+      <ion-button (click)='addItems()'>Add Items</ion-button>
+      <ion-button (click)="deleteSale()">Delete Sale</ion-button>
+    </ion-item>
+    
+  
+  
+    <div *ngIf='this.userService.getExists()'>
+    <ion-card *ngFor="let item of items">
+      <span>
+        <ion-item>
+          <ion-label>{{item.Name}}</ion-label>
+          <ion-button (click)="deleteItem(item)">Delete Item</ion-button>
+          <ion-button (click)="updateItem(item)">Update Item</ion-button>
 
-
-  <div *ngIf='this.userService.getExists()'>
-  <ion-card *ngFor="let item of items">
-    <span>
-      <ion-item>
-        <ion-label>{{item.Name}}</ion-label>
-        <ion-button (click)="deleteItem(item.id)">Delete Item</ion-button>
-
-      </ion-item>
-    </span>
-  </ion-card>
+        </ion-item>
+      </span>
+    </ion-card>
+    </div>
   </div>
+
+
 
 
   

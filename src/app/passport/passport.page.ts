@@ -33,8 +33,8 @@ export class PassportPage implements OnInit {
           id: e.payload.doc.id,
           isEdit: false,
           Description: e.payload.doc.data()['description'],
-          EndTime: e.payload.doc.data()['endTime'],
-          StartTime: e.payload.doc.data()['startTime'],
+          EndTime: new Date(e.payload.doc.data()['endTime']).toLocaleString(),
+          StartTime: new Date(e.payload.doc.data()['startTime']).toLocaleString(),
           Title: e.payload.doc.data()['title']
 
         };

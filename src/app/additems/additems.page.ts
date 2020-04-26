@@ -70,6 +70,8 @@ export class AdditemsPage implements OnInit {
 
 
             record['picture']="";
+            record['storage'] = "";
+
             this.store.collection('sales').doc(this.userService.getSaleID()).collection('items').add(record).catch(error => {
             
             });
@@ -101,6 +103,7 @@ export class AdditemsPage implements OnInit {
                 
                 firebase.storage().ref().child(doc.ref.fullPath).getDownloadURL().then(url => {
                   record['picture'] = url;
+                  record['storage'] = doc.ref.fullPath;
       
       
                 this.store.collection('sales').doc(this.userService.getSaleID()).collection('items').add(record).then(doc =>{

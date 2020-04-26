@@ -12,6 +12,7 @@ interface signInt{
   name?:string;
   address?:string;
   city?:string;
+  zip?:string;
 }
 
 @Component({
@@ -33,28 +34,36 @@ export class SignupPage implements OnInit {
   }
 
  async signup(){
-    await this.afAuth.auth.createUserWithEmailAndPassword(this.user.email,this.user.password)
-    .then(cred => {
-      this.afAuth.auth.currentUser.updateProfile({
-        displayName: this.user.name,
-        photoURL: ""
+
+    if(this.user.email==null||this.user.password==null||this.user.name==null||this.user.address==null||this.user.city==null||this.user.city==null){
+      alert("All fields are required");
+    }else{
+      await this.afAuth.auth.createUserWithEmailAndPassword(this.user.email,this.user.password)
+      .then(cred => {
+        this.afAuth.auth.currentUser.updateProfile({
+          displayName: this.user.name,
+          photoURL: ""
+        });
+        //creates unique user document with their id
+        this.store.collection('users').doc(this.afAuth.auth.currentUser.uid).set({
+          Name: this.user.name,
+          Email: this.user.email,
+          City: this.user.city,
+          Address: this.user.address,
+          Zip: this.user.address,
+          SaleID: ""
+        });
+        if(this.afAuth.auth.currentUser){
+          this.router.navigateByUrl('/tabs/tab1');
+        }
+        
+      })
+      .catch(function(error) {
+        console.log(error.message);
+        alert(error.message);
       });
-      //creates unique user document with their id
-      this.store.collection('users').doc(this.afAuth.auth.currentUser.uid).set({
-        Name: this.user.name,
-        Email: this.user.email,
-        City: this.user.city,
-        Address: this.user.address
-      });
-      if(this.afAuth.auth.currentUser){
-        this.router.navigateByUrl('/tabs/tab1');
-      }
-      
-    })
-    .catch(function(error) {
-      console.log(error.message);
-      alert(error.message);
-    });
+    }
+
 
 
   }
