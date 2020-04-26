@@ -6,7 +6,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <h1>Welcome {{user1}}</h1>
+  <h1>Welcome, {{user1}}</h1>
 
   <div [hidden]='this.loading'>
     <ion-card *ngIf='!this.userService.getExists()'>
@@ -17,13 +17,15 @@
   
     <ion-card *ngIf='this.userService.getExists()'>
       <ion-item >
-        <h2>Your Sale</h2>
-        <ion-button (click)='addItems()'>Add Items</ion-button>
-        <ion-button (click)="deleteSale()">Delete Sale</ion-button>
+        <h2>Sale Dashboard</h2>
+        <h2>{{this.userService.getName()}}</h2>
       </ion-item>
 
       <ion-item>
-        <ion-label>{{sale.Name}}</ion-label>
+        <ion-button (click)='addItems()'>Add Items</ion-button>
+      </ion-item>
+      <ion-item>
+        <ion-button (click)="deleteSale()">Delete Sale</ion-button>
       </ion-item>
     </ion-card>
   

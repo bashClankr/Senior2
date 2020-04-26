@@ -17,6 +17,9 @@ export class UserService {
     passport="";
     Add;
 
+    name;
+    des;
+
     constructor(private firestore: AngularFirestore){}
 
     
@@ -89,6 +92,23 @@ export class UserService {
 
     setAdd(set){
         this.Add = set;
+    }
+
+
+    getName(){
+        return this.name;
+    }
+
+    setName(set){
+        this.name = set;
+    }
+
+    getDes(){
+        return this.des;
+    }
+
+    setDes(set){
+        this.des = set;
     }
     
 }

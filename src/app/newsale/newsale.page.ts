@@ -38,6 +38,8 @@ export class NewsalePage implements OnInit {
     var record ={};
     record['title'] = this.sale.name;
     record['description'] = this.sale.description;
+
+    this.userService.setName(this.sale.name);
     record['endTime'] = this.sale.end;
     record['startTime'] = this.sale.start;
     this.store.collection('users').doc(this.afAuth.auth.currentUser.uid).ref.get().then(e =>{

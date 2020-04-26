@@ -79,6 +79,7 @@ export class Tab1Page implements OnInit{
       }
     }).catch(function(error) {
     });
+
     this.loading=false;
     console.log("doneloading");
   }

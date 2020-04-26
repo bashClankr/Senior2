@@ -10,33 +10,33 @@
 
   <ion-card>
     <ion-card-header>
-      Account Settings
+      <h2>Account Settings</h2>
     </ion-card-header>
     <ion-list > 
         <ion-item>
-            <ion-list-header>
-               Email: {{user}}
-            </ion-list-header>
+            <ion-header>
+               <h3>Email: {{user}}</h3>
+            </ion-header>
             <ion-button round clear >Edit</ion-button>
         </ion-item>
         <ion-item>
-            <ion-list-header>
-               Display Name:
-            </ion-list-header>
+            <ion-header>
+               <h3>Display Name:</h3>
+            </ion-header>
             <ion-button class = "clear" ion-button round clear>Edit</ion-button>
         </ion-item>
 
         <ion-item>
-          <ion-list-header>
-             Passport
-          </ion-list-header>
+          <ion-header>
+            <h3>Passport:</h3>
+          </ion-header>
           <ion-button round clear (click)='passport()'>Fly Away!</ion-button>
       </ion-item>
 
       <ion-item>
-        <ion-list-header (click)="logout()">
-           Sign Out
-        </ion-list-header>
+        <ion-header (click)="logout()">
+           <h3>Sign Out</h3>
+        </ion-header>
     </ion-item>
       </ion-list>
     
